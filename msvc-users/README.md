@@ -60,7 +60,7 @@ src/
     └── resources/
         ├── application.properties                    # Configuración principal del microservicio
         └── (otros recursos estáticos o de configuración)
-
+```
 
 ## ⚙️ Endpoints principales
 
