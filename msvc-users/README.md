@@ -21,8 +21,6 @@ Desarrollado en **Spring Boot 3** siguiendo una arquitectura limpia basada en ca
 | **Spring Cloud Config** | Configuración centralizada (opcional) |
 
 ---
-
-## 🧱 Estructura del proyecto
 ## 📂 Estructura del Proyecto
 
 ```bash
