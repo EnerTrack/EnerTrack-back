@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.5.0</version>
+			<version>2.7.0</version>
 		</dependency>
 
 		<!-- MapStruct: mapeo automático entre entidades y DTOs -->
@@ -112,8 +112,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-kubernetes-client-loadbalancer</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<dependencyManagement>
 		<dependencies>
@@ -149,6 +153,19 @@
 				</configuration>
 			</plugin>
 
+			<!-- Configura codificación y filtrado de recursos -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>properties</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
+
 			<!-- Plugin principal de Spring Boot -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -164,5 +181,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
