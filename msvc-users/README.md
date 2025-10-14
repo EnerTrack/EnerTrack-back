@@ -71,7 +71,7 @@ src/
 |---------|-----------|-------------|
 | `POST` | `/document-type` | Registrar un nuevo tipo de documento |
 | `GET`  | `/document-type` | Listar todos los tipos de documentos |
-| `GET`  | `/document-type/{id}` | Obtener tipo de documento por ID |
+| `PUT`  | `/document-type/{id}` | Actualizar estatus del los tipos de documento por ID |
 
 ---
 
@@ -82,6 +82,6 @@ src/
 |---------|-----------|-------------|
 | `POST` | `/person` | Registrar un nuevo usuario |
 | `GET`  | `/person` | Obtener todos los usuarios |
-| `GET`  | `/person/{id}` | Consultar usuario por ID |
+| `PUT`  | `/person/{id}` | Actualizar usuario por ID |
 
 ---
