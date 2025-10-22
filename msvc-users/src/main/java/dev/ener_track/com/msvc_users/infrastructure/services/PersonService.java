@@ -1,7 +1,6 @@
 package dev.ener_track.com.msvc_users.infrastructure.services;
 
 import dev.ener_track.com.msvc_users.api.dto.request.PersonRequest;
-import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.PersonResponse;
 import dev.ener_track.com.msvc_users.api.dto.response.relationsResponse.PersonRelationResponse;
 import dev.ener_track.com.msvc_users.domain.entities.DocumentTypeEntity;
 import dev.ener_track.com.msvc_users.domain.entities.PersonEntity;
@@ -64,6 +63,14 @@ public class PersonService implements IPersonService {
     }
 
     @Override
+    public PersonRelationResponse getById(String id) throws BadRequestException {
+
+        PersonEntity personEntity = this.find(id);
+
+        return personMapper.toResponse(personEntity);
+    }
+
+    @Override
     public PersonRelationResponse update(String id, PersonRequest request) throws BadRequestException {
 
         PersonEntity person = this.find(id);
@@ -77,4 +84,5 @@ public class PersonService implements IPersonService {
     private PersonEntity find(String id) throws BadRequestException {
         return this.personRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMesasges.IdNotFound("person")));
     }
+
 }

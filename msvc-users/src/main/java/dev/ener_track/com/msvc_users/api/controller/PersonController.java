@@ -29,6 +29,13 @@ public class PersonController {
         return  ResponseEntity.ok(personService.getAll(page -1, size, sortType));
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<PersonRelationResponse> getById(
+            @Validated @PathVariable String id
+    ) throws BadRequestException {
+        return ResponseEntity.ok(personService.getById(id));
+    }
+
     @PostMapping
     public ResponseEntity<PersonRelationResponse> create(
             @Validated @RequestBody PersonRequest request
