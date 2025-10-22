@@ -1,7 +1,8 @@
 package dev.ener_track.com.msvc_users.infrastructure.adstract_service.generic;
 
-import java.util.Optional;
+import dev.ener_track.com.msvc_users.api.dto.response.relationsResponse.PersonRelationResponse;
+import org.apache.coyote.BadRequestException;
 
 public interface ReadByIdService<Response, Id> {
-    Optional<Response> getById(Id id);
+    PersonRelationResponse getById(Id id) throws BadRequestException;
 }
