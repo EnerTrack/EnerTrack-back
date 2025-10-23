@@ -8,14 +8,13 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity(name = "energy_record")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnergyRecord {
+public class EnergyRecordEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

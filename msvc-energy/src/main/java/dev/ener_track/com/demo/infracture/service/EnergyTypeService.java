@@ -1,13 +1,13 @@
 package dev.ener_track.com.demo.infracture.service;
 
 import dev.ener_track.com.demo.api.dto.request.EnergyTypeRequest;
-import dev.ener_track.com.demo.api.dto.response.EnergyTypeResponse;
+import dev.ener_track.com.demo.api.dto.response.basicResponse.EnergyTypeResponse;
 import dev.ener_track.com.demo.domain.entities.EnergyTypeEntity;
 import dev.ener_track.com.demo.domain.respositories.EnergyTypeRepository;
 import dev.ener_track.com.demo.infracture.adstract_service.IEnergyTypeService;
 import dev.ener_track.com.demo.infracture.mapper.EnergyTypeMapper;
 import dev.ener_track.com.demo.utils.enums.SortType;
-import dev.ener_track.com.demo.utils.exeptions.ErrorMesasges;
+import dev.ener_track.com.demo.utils.exeptions.ErrorMessages;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
@@ -45,7 +45,7 @@ public class EnergyTypeService implements IEnergyTypeService {
 
         Optional<EnergyTypeEntity> existingEntity = this.energyTypeRepository.findByName(request.getName());
 
-        if (existingEntity.isPresent()) throw new BadRequestException(ErrorMesasges.alreadyExists(request.getName()));
+        if (existingEntity.isPresent()) throw new BadRequestException(ErrorMessages.alreadyExists(request.getName()));
 
         EnergyTypeEntity newEnergyType = this.energyTypeMapper.toEntity(request);
         EnergyTypeEntity savedEntity = this.energyTypeRepository.save(newEnergyType);
