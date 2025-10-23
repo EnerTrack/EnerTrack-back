@@ -1,7 +1,8 @@
 package dev.ener_track.com.demo.infracture.adstract_service.generic;
 
-import java.util.Optional;
+import dev.ener_track.com.demo.api.dto.response.relationResponse.EnergyRecordRelationResponse;
+import org.apache.coyote.BadRequestException;
 
 public interface ReadByIdService<Response, Id> {
-    Optional<Response> getById(Id id);
+    EnergyRecordRelationResponse getById(Id id) throws BadRequestException;
 }

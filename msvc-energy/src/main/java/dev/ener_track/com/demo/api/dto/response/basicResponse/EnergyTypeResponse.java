@@ -1,4 +1,4 @@
-package dev.ener_track.com.demo.api.dto.response;
+package dev.ener_track.com.demo.api.dto.response.basicResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package dev.ener_track.com.demo.infracture.mapper;
 
 import dev.ener_track.com.demo.api.dto.request.EnergyTypeRequest;
-import dev.ener_track.com.demo.api.dto.response.EnergyTypeResponse;
+import dev.ener_track.com.demo.api.dto.response.basicResponse.EnergyTypeResponse;
 import dev.ener_track.com.demo.domain.entities.EnergyTypeEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

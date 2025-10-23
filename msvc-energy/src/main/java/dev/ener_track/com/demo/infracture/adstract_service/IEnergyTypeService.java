@@ -1,7 +1,7 @@
 package dev.ener_track.com.demo.infracture.adstract_service;
 
 import dev.ener_track.com.demo.api.dto.request.EnergyTypeRequest;
-import dev.ener_track.com.demo.api.dto.response.EnergyTypeResponse;
+import dev.ener_track.com.demo.api.dto.response.basicResponse.EnergyTypeResponse;
 import dev.ener_track.com.demo.infracture.adstract_service.generic.CreateService;
 import dev.ener_track.com.demo.infracture.adstract_service.generic.ReadAllService;
 
