@@ -12,7 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/energy-types")
+@RequestMapping("/energy-type")
 @AllArgsConstructor
 public class EnergyTypeController {
 
