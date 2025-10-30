@@ -72,7 +72,15 @@ public class EnergyRecordService implements IEnergyRecordService {
 
         EnergyRecordEntity energyRecordEntity = this.find(id);
 
-        return this.energyRecordMapper.toResponse(energyRecordEntity);
+        System.out.println("##############" +
+                energyRecordEntity +
+                "############################");
+
+       EnergyRecordRelationResponse response = this.energyRecordMapper.toResponse(energyRecordEntity);
+
+       response.setPerson(this.userFeing.getUserById(energyRecordEntity.getUserId()));
+
+        return response;
     }
 
     @Override
