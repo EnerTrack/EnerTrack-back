@@ -1,0 +1,21 @@
+
+# Configuración de rutas en el gateway
+spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: msvc-users
+              uri: http://localhost:8001
+              predicates:
+                - Path=/api/users/**
+              filters:
+                - StripPrefix=2
+
+            - id: msvc-energy
+              uri: http://localhost:8002
+              predicates:
+                - Path=/api/energy/**
+              filters:
+                - StripPrefix=2
