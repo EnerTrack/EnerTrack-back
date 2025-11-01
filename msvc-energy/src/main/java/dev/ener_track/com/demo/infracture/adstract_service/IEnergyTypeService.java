@@ -9,6 +9,8 @@ public interface IEnergyTypeService extends
         CreateService<EnergyTypeRequest, EnergyTypeResponse>,
         ReadAllService<EnergyTypeResponse> {
 
+    public EnergyTypeResponse findByName(String name);
+
     public String FIELD_BY_SORT = "name";
 
 }

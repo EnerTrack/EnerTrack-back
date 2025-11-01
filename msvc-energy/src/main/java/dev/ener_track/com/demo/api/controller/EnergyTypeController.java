@@ -29,6 +29,15 @@ public class EnergyTypeController {
         return ResponseEntity.ok(this.energyTypeService.getAll(page, size, sortType));
     }
 
+    @GetMapping("/{name}")
+    public ResponseEntity<EnergyTypeResponse> getByName(
+            @PathVariable("name") String name
+    ) throws BadRequestException {
+
+        return ResponseEntity.ok(this.energyTypeService.findByName(name));
+
+    }
+
     @PostMapping
     public ResponseEntity<EnergyTypeResponse> create(
             @Validated @RequestBody EnergyTypeRequest resquest) throws BadRequestException {
