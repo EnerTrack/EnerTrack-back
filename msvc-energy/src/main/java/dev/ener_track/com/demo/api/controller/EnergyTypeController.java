@@ -12,7 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/energy-types")
+@RequestMapping("/energy-type")
 @AllArgsConstructor
 public class EnergyTypeController {
 
@@ -27,6 +27,15 @@ public class EnergyTypeController {
         if(sortType==null) sortType = SortType.NONE;
 
         return ResponseEntity.ok(this.energyTypeService.getAll(page, size, sortType));
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<EnergyTypeResponse> getByName(
+            @PathVariable("name") String name
+    ) throws BadRequestException {
+
+        return ResponseEntity.ok(this.energyTypeService.findByName(name));
+
     }
 
     @PostMapping

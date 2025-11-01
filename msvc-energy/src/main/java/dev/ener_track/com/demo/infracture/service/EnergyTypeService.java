@@ -53,4 +53,13 @@ public class EnergyTypeService implements IEnergyTypeService {
         return this.energyTypeMapper.toResponse(savedEntity);
     }
 
+    @Override
+    public EnergyTypeResponse findByName(String name) {
+
+        Optional<EnergyTypeEntity> existingEntity = this.energyTypeRepository.findByName(name);
+
+        return existingEntity.map(
+                entity -> this.energyTypeMapper.toResponse(entity)).orElse(null);
+
+    }
 }
