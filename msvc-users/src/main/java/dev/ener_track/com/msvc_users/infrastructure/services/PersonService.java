@@ -9,7 +9,7 @@ import dev.ener_track.com.msvc_users.domain.repositories.PersonRepository;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.IPersonService;
 import dev.ener_track.com.msvc_users.infrastructure.mappers.PersonMapper;
 import dev.ener_track.com.msvc_users.utils.emuns.SortType;
-import dev.ener_track.com.msvc_users.utils.exeptions.ErrorMesasges;
+import dev.ener_track.com.msvc_users.utils.exeptions.ErrorMessages;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
@@ -46,12 +46,12 @@ public class PersonService implements IPersonService {
 
         PersonEntity personExisting = personRepository.findByDocument(request.getDocument());
         if (personExisting != null) {
-            throw new BadRequestException(ErrorMesasges.alreadyExists(request.getDocument()));
+            throw new BadRequestException(ErrorMessages.alreadyExists(request.getDocument()));
         }
 
         DocumentTypeEntity documentType = documentTypeRepository.findByName(request.getDocumentType());
         if (documentType == null) {
-            throw new BadRequestException(ErrorMesasges.IdNotFound("DocumentType"));
+            throw new BadRequestException(ErrorMessages.IdNotFound("DocumentType"));
         }
 
         PersonEntity newPerson = personMapper.toEntity(request);
@@ -82,7 +82,7 @@ public class PersonService implements IPersonService {
     }
 
     private PersonEntity find(String id) throws BadRequestException {
-        return this.personRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMesasges.IdNotFound("person")));
+        return this.personRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMessages.IdNotFound("person")));
     }
 
 }
