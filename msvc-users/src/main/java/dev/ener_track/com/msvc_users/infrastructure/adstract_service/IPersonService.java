@@ -11,7 +11,7 @@ public interface IPersonService extends
         ReadAllService<PersonRelationResponse>,
         CreateService<PersonRequest, PersonRelationResponse>,
         UpdateService<PersonRequest, PersonRelationResponse, String>,
-        ReadByIdService<PersonRelationResponse, String>
+        ReadByIdService<String>
 {
 
     public String FIELD_BY_SORT = "name";

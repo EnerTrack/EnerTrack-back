@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class BadResquestController {
+public class BadRequestController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public BaseErrorResponse handleBadRequest(MethodArgumentNotValidException exception){
@@ -32,7 +32,7 @@ public class BadResquestController {
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public BaseErrorResponse badResquest(BadRequestException exception){
+    public BaseErrorResponse badRequest(BadRequestException exception){
 
         List<String> errors = new ArrayList<>();
 

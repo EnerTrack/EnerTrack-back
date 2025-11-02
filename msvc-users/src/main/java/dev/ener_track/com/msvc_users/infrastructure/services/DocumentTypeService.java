@@ -6,7 +6,7 @@ import dev.ener_track.com.msvc_users.domain.entities.DocumentTypeEntity;
 import dev.ener_track.com.msvc_users.domain.repositories.DocumentTypeRepository;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.IDocumentTypeService;
 import dev.ener_track.com.msvc_users.infrastructure.mappers.DocumentTypeMapper;
-import dev.ener_track.com.msvc_users.utils.exeptions.ErrorMesasges;
+import dev.ener_track.com.msvc_users.utils.exeptions.ErrorMessages;
 import dev.ener_track.com.msvc_users.utils.emuns.SortType;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.BadRequestException;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class DocumentTypeSerive implements IDocumentTypeService {
+public class DocumentTypeService implements IDocumentTypeService {
 
     private final DocumentTypeRepository documentTypeRepository;
     private final DocumentTypeMapper documentTypeMapper;
@@ -44,7 +44,7 @@ public class DocumentTypeSerive implements IDocumentTypeService {
 
         DocumentTypeEntity documentTypeExisting = documentTypeRepository.findByName(request.getName());
 
-        if(documentTypeExisting != null) throw new BadRequestException(ErrorMesasges.alreadyExists(request.getName()));
+        if(documentTypeExisting != null) throw new BadRequestException(ErrorMessages.alreadyExists(request.getName()));
 
         DocumentTypeEntity newDocumentType = this.documentTypeMapper.toEntity(request);
         DocumentTypeEntity savedDocumentType = documentTypeRepository.save(newDocumentType);
@@ -69,7 +69,7 @@ public class DocumentTypeSerive implements IDocumentTypeService {
     private DocumentTypeEntity find(String id) throws BadRequestException {
 
         return this.documentTypeRepository.findById(id)
-                .orElseThrow(() -> new BadRequestException(ErrorMesasges.IdNotFound("DoumentType")));
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.IdNotFound("DocumentType")));
     }
 
 }

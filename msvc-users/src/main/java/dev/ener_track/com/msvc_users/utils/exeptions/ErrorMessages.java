@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class ErrorMesasges {
+public class ErrorMessages {
 
     public static String IdNotFound(String entity) {
         final String message = "There are no records in the entity %s with  id";
