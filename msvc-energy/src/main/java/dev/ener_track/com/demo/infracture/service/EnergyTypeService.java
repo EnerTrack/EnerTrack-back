@@ -54,6 +54,17 @@ public class EnergyTypeService implements IEnergyTypeService {
     }
 
     @Override
+    public EnergyTypeResponse update(String id, EnergyTypeRequest request) throws BadRequestException {
+
+        EnergyTypeEntity energyType = this.find(id);
+
+        this.energyTypeMapper.updateEnergyTypeEntity(request, energyType);
+        EnergyTypeEntity savedEntity = this.energyTypeRepository.save(energyType);
+
+        return this.energyTypeMapper.toResponse(savedEntity);
+    }
+
+    @Override
     public EnergyTypeResponse findByName(String name) {
 
         Optional<EnergyTypeEntity> existingEntity = this.energyTypeRepository.findByName(name);
@@ -61,5 +72,10 @@ public class EnergyTypeService implements IEnergyTypeService {
         return existingEntity.map(
                 entity -> this.energyTypeMapper.toResponse(entity)).orElse(null);
 
+    }
+
+    private EnergyTypeEntity find(String id) throws BadRequestException {
+        return this.energyTypeRepository.findById(id).orElseThrow(
+                () -> new BadRequestException(ErrorMessages.IdNotFound("Energy Type")));
     }
 }
