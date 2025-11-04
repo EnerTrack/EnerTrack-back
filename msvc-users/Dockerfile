@@ -36,8 +36,5 @@ COPY --from=builder /app/target/msvc-users-0.0.1-SNAPSHOT.jar app.jar
 # Exponemos el puerto
 EXPOSE 8001
 
-# Variable de entorno opcional
-ENV PORT=8001
-
 # Ejecutamos la app
 CMD ["java", "-jar", "app.jar"]
