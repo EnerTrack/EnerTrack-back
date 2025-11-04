@@ -44,4 +44,12 @@ public class EnergyTypeController {
 
         return ResponseEntity.ok(this.energyTypeService.create(resquest));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EnergyTypeResponse> update(
+            @Validated @RequestBody EnergyTypeRequest request,
+            @PathVariable String id) throws BadRequestException {
+
+        return  ResponseEntity.ok(this.energyTypeService.update(id, request));
+    }
 }
