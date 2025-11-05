@@ -46,8 +46,8 @@ services:
   msvc-users:
     container_name: enertrack-msvc-users
     build:
-      context: ./
-      dockerfile: ./msvc-users/Dockerfile
+      context: ./msvc-users
+      dockerfile: Dockerfile
 
     ports:
       - "8001:8001"
@@ -64,8 +64,8 @@ services:
   msvc-energy:
     container_name: enertrack-msvc-energy
     build:
-      context: ./
-      dockerfile: ./msvc-energy/Dockerfile
+      context: ./msvc-energy
+      dockerfile: Dockerfile
 
     ports:
       - "8002:8002"
@@ -83,8 +83,8 @@ services:
   msvc-data:
     container_name: enertrack-msvc-data
     build:
-      context: ./
-      dockerfile: ./msvc-data/Dockerfile
+      context: ./msvc-data
+      dockerfile: Dockerfile
 
     ports:
       - "8003:8003"
@@ -102,8 +102,8 @@ services:
   msvc-gateway:
     container_name: enertrack-msvc-gateway
     build:
-      context: ./
-      dockerfile: ./msvc-gateway/Dockerfile
+      context: ./msvc-gateway
+      dockerfile: Dockerfile
 
     ports:
       - "8090:8090"
