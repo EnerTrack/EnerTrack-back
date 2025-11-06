@@ -1,5 +1,6 @@
 package dev.ener_track.com.msvc_data.domain.repositories;
 
+import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyTypeMostUseResponse;
 import dev.ener_track.com.msvc_data.domain.entities.EnergyRecordEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -7,32 +8,49 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-
 @Repository
 public interface EnergyRecordRepository extends JpaRepository<EnergyRecordEntity, String> {
 
     @Query(value = """
-    SELECT 
-        et.name AS energy_type_name,
-        e.country,
-        e.year,
-        e.generated_mwh,
-        e.capacity_mwh,
-        e.emission_reduction_tons,
-        e.investment_usd,
-        e.source,
-        e.created_at,
-        e.user_id,
-        e.energy_type_id
-    FROM (
-        SELECT *,
-               ROW_NUMBER() OVER (PARTITION BY e.energy_type_id ORDER BY e.generated_mwh DESC) AS rn
+        WITH country_totals AS (
+            SELECT 
+                e.country,
+                SUM(e.generated_mwh) AS total_country_mwh
+            FROM energy_record e
+            GROUP BY e.country
+            ORDER BY total_country_mwh DESC
+            LIMIT 5
+        ),
+        ranked_energy AS (
+            SELECT 
+                e.country,
+                et.id AS energy_type_id,
+                et.name AS energy_type_name,
+                SUM(e.generated_mwh) AS total_generated_mwh,
+                ROW_NUMBER() OVER (PARTITION BY e.country ORDER BY SUM(e.generated_mwh) DESC) AS rn
+            FROM energy_record e
+            JOIN energy_type et ON e.energy_type_id = et.id
+            WHERE e.country IN (SELECT country FROM country_totals)
+            GROUP BY e.country, et.id, et.name
+        )
+        SELECT *
+        FROM ranked_energy
+        WHERE rn <= 5
+        ORDER BY country, total_generated_mwh DESC
+    """, nativeQuery = true)
+    List<Map<String, Object>> findTop5CountriesAndTheirTop5EnergyTypes();
+
+
+    @Query(value = """
+        SELECT 
+            e.energy_type_id AS energyTypeId,
+            et.name AS energyTypeName,
+            COUNT(e.id) AS usageCount
         FROM energy_record e
-    ) e
-    JOIN energy_type et ON e.energy_type_id = et.id
-    WHERE e.rn <= 5
-""", nativeQuery = true)
-    List<Map<String, Object>> findTop5CountriesByEnergyType();
-
-
+        JOIN energy_type et ON e.energy_type_id = et.id
+        GROUP BY e.energy_type_id, et.name
+        ORDER BY usageCount DESC
+    """, nativeQuery = true)
+    List<EnergyTypeMostUseResponse> findAllEnergyTypesUsage();
 }
+

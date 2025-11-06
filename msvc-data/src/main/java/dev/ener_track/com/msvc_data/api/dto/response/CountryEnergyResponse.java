@@ -7,10 +7,7 @@ import lombok.*;
 @Data
 @Builder
 public class CountryEnergyResponse {
-    private String country;
-    private double generatedMwh;
-    private int year;
-    private double capacityMwh;
-    private double emissionReductionTons;
-    private double investmentUsd;
+    private String energyTypeId;
+    private String energyTypeName;
+    private double totalGeneratedMwh;
 }
