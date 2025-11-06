@@ -7,21 +7,21 @@ spring:
         webmvc:
           routes:
             - id: msvc-users
-              uri: http://localhost:8001
+              uri: http://msvc-users:8001
               predicates:
                 - Path=/api/users/**
               filters:
                 - StripPrefix=2
 
             - id: msvc-energy
-              uri: http://localhost:8002
+              uri: http://msvc-energy:8002
               predicates:
                 - Path=/api/energy/**
               filters:
                 - StripPrefix=2
 
             - id: msvc-data
-              uri: http://localhost:8003
+              uri: http://msvc-data:8003
               predicates:
                 - Path=/api/data/**
               filters:

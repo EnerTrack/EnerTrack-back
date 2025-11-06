@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "user-service", url = "http://localhost:8001/person/")
+@FeignClient(name = "user-service", url = "http://enertrack-msvc-users:8001/person")
 public interface UserFeing {
 
     @GetMapping("/{id}")

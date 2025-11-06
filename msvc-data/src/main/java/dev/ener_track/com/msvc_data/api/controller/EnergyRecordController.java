@@ -1,8 +1,9 @@
 package dev.ener_track.com.msvc_data.api.controller;
 
 import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyGroupResponse;
-import dev.ener_track.com.msvc_data.infractructure.service.EnergyRecordService;
-import lombok.RequiredArgsConstructor;
+import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyTypeMostUseResponse;
+import dev.ener_track.com.msvc_data.infractructure.adstract_service.IEnergyRecordService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+
 @RestController
 @RequestMapping("/energy-data")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class EnergyRecordController {
 
-    private final EnergyRecordService energyRecordService;
+    private final IEnergyRecordService energyRecordService;
 
     @GetMapping("/top5-countries")
-    public ResponseEntity<List<EnergyGroupResponse>> getTop5CountriesByEnergyType() {
-        return ResponseEntity.ok(energyRecordService.getTop5CountriesByEnergyType());
+    public ResponseEntity<List<EnergyGroupResponse>> getTop5EnergyTypesByCountry() {
+        return ResponseEntity.ok(this.energyRecordService.getTop5EnergyTypesByCountry());
     }
+
+    @GetMapping("/energy-type-usage")
+    public ResponseEntity<List<EnergyTypeMostUseResponse>> getAllEnergyTypesUsage() {
+        return ResponseEntity.ok( this.energyRecordService.getAllEnergyTypesUsage());
+    }
+    
 }

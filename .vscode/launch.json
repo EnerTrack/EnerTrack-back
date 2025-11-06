@@ -29,6 +29,16 @@
             "projectName": "msvc-users",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MsvcDataApplication<msvc-data>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "dev.ener_track.com.msvc_data.MsvcDataApplication",
+            "projectName": "msvc-data",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
