@@ -1,5 +1,6 @@
 package dev.ener_track.com.msvc_data.infractructure.adstract_service;
 
+import dev.ener_track.com.msvc_data.api.dto.response.EmissionReductionResponse;
 import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyGroupResponse;
 import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyTypeMostUseResponse;
 
@@ -9,4 +10,5 @@ public interface IEnergyRecordService {
 
     List<EnergyGroupResponse> getTop5EnergyTypesByCountry();
     List<EnergyTypeMostUseResponse> getAllEnergyTypesUsage();
+    public List<EmissionReductionResponse> getEmissionReductionStats();
 }

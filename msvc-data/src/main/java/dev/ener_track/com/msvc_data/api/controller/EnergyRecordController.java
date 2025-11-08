@@ -1,5 +1,6 @@
 package dev.ener_track.com.msvc_data.api.controller;
 
+import dev.ener_track.com.msvc_data.api.dto.response.EmissionReductionResponse;
 import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyGroupResponse;
 import dev.ener_track.com.msvc_data.api.dto.response.group_response.EnergyTypeMostUseResponse;
 import dev.ener_track.com.msvc_data.infractructure.adstract_service.IEnergyRecordService;
@@ -10,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-
 
 @RestController
 @RequestMapping("/energy-data")
@@ -27,7 +26,12 @@ public class EnergyRecordController {
 
     @GetMapping("/energy-type-usage")
     public ResponseEntity<List<EnergyTypeMostUseResponse>> getAllEnergyTypesUsage() {
-        return ResponseEntity.ok( this.energyRecordService.getAllEnergyTypesUsage());
+        return ResponseEntity.ok(this.energyRecordService.getAllEnergyTypesUsage());
     }
-    
+
+    @GetMapping("/emission-reduction")
+    public ResponseEntity<List<EmissionReductionResponse>> getEmissionReductionStats() {
+        return ResponseEntity.ok(energyRecordService.getEmissionReductionStats());
+    }
+
 }
