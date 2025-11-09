@@ -74,7 +74,7 @@ Url-base ```http://localhost:8090/```
 
 | Método | Endpoint                             | Descripción                                |
 |--------|-------------------------------------|--------------------------------------------|
-| GET    | /api/data/energy-data/top5-countries | Obtener top 5 tipos de energía por país   |
+| GET    | /api/data/energy-data/top5-countries | Obtener top 5 paises con tipos de energía   |
 | GET    | /api/data/energy-data/energy-type-usage | Obtener uso de todos los tipos de energía |
 | GET    | /api/data/energy-data/emission-reduction | Obtener estadísticas de reducción de emisiones |
 
