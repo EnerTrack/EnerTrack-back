@@ -1,6 +1,7 @@
 package dev.ener_track.com.msvc_users.api.controller;
 
 import dev.ener_track.com.msvc_users.api.dto.request.PersonRequest;
+import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.msvc_users.api.dto.response.relationsResponse.PersonRelationResponse;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.IPersonService;
 import dev.ener_track.com.msvc_users.utils.emuns.SortType;
@@ -27,6 +28,13 @@ public class PersonController {
         if(sortType==null) sortType = SortType.NONE;
 
         return  ResponseEntity.ok(personService.getAll(page -1, size, sortType));
+    }
+
+    @GetMapping("/validate-document")
+    public ResponseEntity<ValidateExistence> ValidatedDocument(
+            @RequestParam String document
+    )  {
+        return ResponseEntity.ok(this.personService.existsByDocument(document));
     }
 
     @GetMapping(path = "/{id}")

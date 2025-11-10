@@ -1,6 +1,7 @@
 package dev.ener_track.com.msvc_users.infrastructure.adstract_service;
 
 import dev.ener_track.com.msvc_users.api.dto.request.PersonRequest;
+import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.msvc_users.api.dto.response.relationsResponse.PersonRelationResponse;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.generic.CreateService;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.generic.ReadAllService;
@@ -14,6 +15,7 @@ public interface IPersonService extends
         ReadByIdService<String>
 {
 
+     ValidateExistence existsByDocument(String document);
     public String FIELD_BY_SORT = "name";
 
 }

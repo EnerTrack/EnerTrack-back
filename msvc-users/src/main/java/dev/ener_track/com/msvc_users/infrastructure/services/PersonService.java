@@ -1,6 +1,7 @@
 package dev.ener_track.com.msvc_users.infrastructure.services;
 
 import dev.ener_track.com.msvc_users.api.dto.request.PersonRequest;
+import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.msvc_users.api.dto.response.relationsResponse.PersonRelationResponse;
 import dev.ener_track.com.msvc_users.domain.entities.DocumentTypeEntity;
 import dev.ener_track.com.msvc_users.domain.entities.PersonEntity;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -42,20 +45,26 @@ public class PersonService implements IPersonService {
     }
 
     @Override
+    public ValidateExistence existsByDocument(String document) {
+       boolean exists = personRepository.findByDocument(document).isPresent();
+        return new ValidateExistence(exists);
+    }
+
+    @Override
     public PersonRelationResponse create(PersonRequest request) throws BadRequestException {
 
-        PersonEntity personExisting = personRepository.findByDocument(request.getDocument());
-        if (personExisting != null) {
+        Optional<PersonEntity> personExisting = personRepository.findByDocument(request.getDocument());
+        if (personExisting.isPresent()) {
             throw new BadRequestException(ErrorMessages.alreadyExists(request.getDocument()));
         }
 
-        DocumentTypeEntity documentType = documentTypeRepository.findByName(request.getDocumentType());
-        if (documentType == null) {
+        Optional<DocumentTypeEntity> documentType = documentTypeRepository.findByName(request.getDocumentType());
+        if (documentType.isEmpty()) {
             throw new BadRequestException(ErrorMessages.IdNotFound("DocumentType"));
         }
 
         PersonEntity newPerson = personMapper.toEntity(request);
-        newPerson.setDocumentType(documentType);
+        newPerson.setDocumentType(documentType.get());
 
         PersonEntity savedPerson = personRepository.save(newPerson);
 
