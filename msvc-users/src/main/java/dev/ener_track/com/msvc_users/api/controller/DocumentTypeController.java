@@ -2,6 +2,7 @@ package dev.ener_track.com.msvc_users.api.controller;
 
 import dev.ener_track.com.msvc_users.api.dto.request.DocumentTypeRequest;
 import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.DocumentTypeResponse;
+import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.IDocumentTypeService;
 import dev.ener_track.com.msvc_users.utils.emuns.SortType;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,13 @@ public class DocumentTypeController {
         if(sortType==null) sortType = SortType.NONE;
 
         return  ResponseEntity.ok(documentTypeService.getAll(page -1, size, sortType));
+    }
+
+    @GetMapping("/validate-name")
+    public ResponseEntity<ValidateExistence> ValidatedDocumentType(
+            @RequestParam String name
+    )  {
+        return ResponseEntity.ok(this.documentTypeService.existsByName(name));
     }
 
     @PostMapping

@@ -2,6 +2,7 @@ package dev.ener_track.com.msvc_users.infrastructure.services;
 
 import dev.ener_track.com.msvc_users.api.dto.request.DocumentTypeRequest;
 import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.DocumentTypeResponse;
+import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.msvc_users.domain.entities.DocumentTypeEntity;
 import dev.ener_track.com.msvc_users.domain.repositories.DocumentTypeRepository;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.IDocumentTypeService;
@@ -14,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -38,13 +41,18 @@ public class DocumentTypeService implements IDocumentTypeService {
         return this.documentTypeRepository.findAll(pagination).map(this.documentTypeMapper::toResponse);
     }
 
+    @Override
+    public ValidateExistence existsByName(String name) {
+        boolean exists = documentTypeRepository.findByName(name).isPresent();
+        return new ValidateExistence(exists);
+    }
 
     @Override
     public DocumentTypeResponse create(DocumentTypeRequest request) throws BadRequestException {
 
-        DocumentTypeEntity documentTypeExisting = documentTypeRepository.findByName(request.getName());
+        Optional<DocumentTypeEntity> documentTypeExisting = documentTypeRepository.findByName(request.getName());
 
-        if(documentTypeExisting != null) throw new BadRequestException(ErrorMessages.alreadyExists(request.getName()));
+        if(documentTypeExisting.isPresent()) throw new BadRequestException(ErrorMessages.alreadyExists(request.getName()));
 
         DocumentTypeEntity newDocumentType = this.documentTypeMapper.toEntity(request);
         DocumentTypeEntity savedDocumentType = documentTypeRepository.save(newDocumentType);
