@@ -23,7 +23,7 @@ public class PersonEntity {
     @Column(nullable = false, length = 50)
     private String lastName;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, unique = true, length = 50)
     private String email;
 
     @Column(nullable = false, length = 20)
@@ -42,4 +42,7 @@ public class PersonEntity {
     @JoinColumn(name = "document_type_id", referencedColumnName = "id")
     private DocumentTypeEntity documentType;
 
+    @OneToOne(mappedBy = "person")
+    @ToString.Exclude
+    private UserEntity user;
 }

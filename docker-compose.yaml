@@ -97,6 +97,24 @@ services:
 
     restart: always
 
+    ###### msvc-auth ######
+  msvc-auth:
+    container_name: enertrack-msvc-auth
+    build:
+      context: ./msvc-auth
+      dockerfile: Dockerfile
+
+    ports:
+      - "8004:8004"
+
+    networks:
+      - enertrack-network
+
+    depends_on:
+      - msvc-users
+
+    restart: always
+
 
   ###### msvc-gateway ######
   msvc-gateway:

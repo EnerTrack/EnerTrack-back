@@ -2,6 +2,7 @@ package dev.ener_track.com.demo.infracture.service;
 
 import dev.ener_track.com.demo.api.dto.request.EnergyTypeRequest;
 import dev.ener_track.com.demo.api.dto.response.basicResponse.EnergyTypeResponse;
+import dev.ener_track.com.demo.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.demo.domain.entities.EnergyTypeEntity;
 import dev.ener_track.com.demo.domain.respositories.EnergyTypeRepository;
 import dev.ener_track.com.demo.infracture.adstract_service.IEnergyTypeService;
@@ -72,6 +73,12 @@ public class EnergyTypeService implements IEnergyTypeService {
         return existingEntity.map(
                 entity -> this.energyTypeMapper.toResponse(entity)).orElse(null);
 
+    }
+
+    @Override
+    public ValidateExistence existsByName(String name) {
+        boolean exists = this.energyTypeRepository.findByName(name).isPresent();
+        return new ValidateExistence(exists);
     }
 
     private EnergyTypeEntity find(String id) throws BadRequestException {

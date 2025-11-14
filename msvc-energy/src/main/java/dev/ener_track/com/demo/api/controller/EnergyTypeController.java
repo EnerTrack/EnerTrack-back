@@ -2,6 +2,7 @@ package dev.ener_track.com.demo.api.controller;
 
 import dev.ener_track.com.demo.api.dto.request.EnergyTypeRequest;
 import dev.ener_track.com.demo.api.dto.response.basicResponse.EnergyTypeResponse;
+import dev.ener_track.com.demo.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.demo.infracture.adstract_service.IEnergyTypeService;
 import dev.ener_track.com.demo.utils.enums.SortType;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,13 @@ public class EnergyTypeController {
 
         return ResponseEntity.ok(this.energyTypeService.findByName(name));
 
+    }
+
+    @GetMapping("/validate-name")
+    public ResponseEntity<ValidateExistence> validateName(
+            @RequestParam String name
+    ){
+        return ResponseEntity.ok(this.energyTypeService.existsByName(name));
     }
 
     @PostMapping

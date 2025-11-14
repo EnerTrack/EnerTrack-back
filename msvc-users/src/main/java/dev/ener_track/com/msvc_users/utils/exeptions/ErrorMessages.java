@@ -17,4 +17,12 @@ public class ErrorMessages {
     public static String alreadyExists(Object value) {
         return String.format("%s already exists in the database", value);
     }
+
+    public static String emailNotFound(Object value) {
+        return String.format("%s not exists in the database", value);
+    }
+
+    public static String userNotFound(Object value) {
+        return String.format("%s not exists in the database", value);
+    }
 }
