@@ -22,3 +22,13 @@ spring:
             - Path=/api/data/**
           filters:
             - StripPrefix=2
+
+        - id: msvc-auth
+          uri: http://msvc-auth:8004
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
+
+jwt:
+  secret: oN9Jd83J1uVqV7+H1ydTjK9tqw2+ZK4QO+9OG7yF7qXfQb1h8bbv2X4+N9Mq+W==
