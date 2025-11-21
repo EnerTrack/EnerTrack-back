@@ -2,7 +2,7 @@ package dev.ener_track.com.msvc_auth.api.controller;
 
 import dev.ener_track.com.msvc_auth.api.dto.request.LoginRequest;
 import dev.ener_track.com.msvc_auth.api.dto.response.TokenResponse;
-import dev.ener_track.com.msvc_auth.services.IAuthService;
+import dev.ener_track.com.msvc_auth.services.adtract_service.IAuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
