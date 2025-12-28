@@ -86,7 +86,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Lombok: elimina código repetitivo (getters, setters, etc.) -->
+        <!-- Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Lombok: elimina código repetitivo (getters, setters, etc.) -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

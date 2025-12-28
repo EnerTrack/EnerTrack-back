@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.containerPort }}
+          protocol: TCP
+        env:
+        - name: MSVC_USERS_URL
+          value: "{{ .Values.env.MSVC_USERS_URL }}"
+        - name: MSVC_ENERGY_URL
+          value: "{{ .Values.env.MSVC_ENERGY_URL }}"
+        - name: MSVC_DATA_URL
+          value: "{{ .Values.env.MSVC_DATA_URL }}"
+        - name: MSVC_AUTH_URL
+          value: "{{ .Values.env.MSVC_AUTH_URL }}"
+        - name: JWT_SECRET
+          value: "{{ .Values.env.JWT_SECRET }}"
+        - name: SPRING_CONFIG_LOCATION
+          value: "file:/app/config/"
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+{{/*        livenessProbe:*/}}
+{{/*          httpGet:*/}}
+{{/*            path: /actuator/health/liveness*/}}
+{{/*            port: http*/}}
+{{/*          initialDelaySeconds: 150*/}}
+{{/*          periodSeconds: 10*/}}
+{{/*          timeoutSeconds: 5*/}}
+{{/*          failureThreshold: 5*/}}
+{{/*        readinessProbe:*/}}
+{{/*          httpGet:*/}}
+{{/*            path: /actuator/health/readiness*/}}
+{{/*            port: http*/}}
+{{/*          initialDelaySeconds: 120*/}}
+{{/*          periodSeconds: 5*/}}
+{{/*          timeoutSeconds: 3*/}}
+{{/*          failureThreshold: 3*/}}
+      volumes:
+      - name: config
+        configMap:
+          name: {{ .Values.configMap.name }}
+

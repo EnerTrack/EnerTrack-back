@@ -1,0 +1,25 @@
+image:
+  repository: mysql
+  tag: "9"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3306
+  name: mysql9
+
+containerPort: 3306
+
+database:
+  name: msvc_energy_db
+
+credentials:
+  rootPassword: Rig0bert0.
+  username: root
+  password: Rig0bert0.
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 10Gi

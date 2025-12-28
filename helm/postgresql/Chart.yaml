@@ -1,0 +1,7 @@
+apiVersion: v2
+name: postgresql
+description: Helm chart for PostgreSQL database (EnerTrack)
+type: application
+version: 1.0.0
+appVersion: "14.0"
+

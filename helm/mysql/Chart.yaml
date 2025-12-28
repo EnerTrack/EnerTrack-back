@@ -1,0 +1,7 @@
+apiVersion: v2
+name: mysql
+description: Helm chart for MySQL database (EnerTrack)
+type: application
+version: 1.0.0
+appVersion: "9.0"
+

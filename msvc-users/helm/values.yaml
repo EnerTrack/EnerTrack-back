@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: rignu/enertrack-msvc-users
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 8001
+
+containerPort: 8001
+
+env:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://msvc-data:5432/msvc_energy_db
+  SPRING_DATASOURCE_USERNAME: postgres
+  SPRING_DATASOURCE_PASSWORD: Rig0bert0.
