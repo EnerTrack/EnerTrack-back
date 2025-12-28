@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.containerPort }}
+          protocol: TCP
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "{{ .Values.env.SPRING_DATASOURCE_URL }}"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "{{ .Values.env.SPRING_DATASOURCE_USERNAME }}"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "{{ .Values.env.SPRING_DATASOURCE_PASSWORD }}"
+        - name: SPRING_CONFIG_LOCATION
+          value: "file:/app/config/"
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+
+{{/*        livenessProbe:*/}}
+{{/*          httpGet:*/}}
+{{/*            path: /actuator/health/liveness*/}}
+{{/*            port: http*/}}
+{{/*          initialDelaySeconds: 150*/}}
+{{/*          periodSeconds: 10*/}}
+{{/*          timeoutSeconds: 5*/}}
+{{/*          failureThreshold: 5*/}}
+{{/*        readinessProbe:*/}}
+{{/*          httpGet:*/}}
+{{/*            path: /actuator/health/readiness*/}}
+{{/*            port: http*/}}
+{{/*          initialDelaySeconds: 120*/}}
+{{/*          periodSeconds: 5*/}}
+{{/*          timeoutSeconds: 3*/}}
+{{/*          failureThreshold: 5*/}}
+      volumes:
+      - name: config
+        configMap:
+          name: {{ .Values.configMap.name }}
+

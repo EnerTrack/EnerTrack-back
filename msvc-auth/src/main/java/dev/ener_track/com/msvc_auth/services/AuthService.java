@@ -5,6 +5,7 @@ import dev.ener_track.com.msvc_auth.api.dto.response.TokenResponse;
 import dev.ener_track.com.msvc_auth.api.dto.response.VerifyLogin;
 import dev.ener_track.com.msvc_auth.client.UserFeing;
 import dev.ener_track.com.msvc_auth.helper.JwtHelper;
+import dev.ener_track.com.msvc_auth.services.adtract_service.IAuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @AllArgsConstructor
-public class AuthService implements IAuthService{
+public class AuthService implements IAuthService {
 
     private final UserFeing userFeing;
     private final PasswordEncoder passwordEncoder;
@@ -32,6 +33,7 @@ public class AuthService implements IAuthService{
 
         return TokenResponse.builder()
                 .AccessToken(jwtHelper.generateToken(verify))
+                .username(verify.getName())
                 .build();
     }
 
