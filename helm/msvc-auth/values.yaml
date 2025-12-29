@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: rignu/enertrack-msvc-auth
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8004
+
+containerPort: 8004
+
+env:
+  MSVC_USERS_URL: http://msvc-users:8001/users
+  JWT_SECRET: oN9Jd83J1uVqV7+H1ydTjK9tqw2+ZK4QO+9OG7yF7qXfQb1h8bbv2X4+N9Mq+W==
+
+configMap:
+  name: msvc-auth-config
+

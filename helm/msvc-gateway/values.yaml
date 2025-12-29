@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: rignu/enertrack-msvc-gateway
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 8090
+
+containerPort: 8090
+
+env:
+  MSVC_USERS_URL: http://msvc-users:8001
+  MSVC_ENERGY_URL: http://msvc-energy:8002
+  MSVC_DATA_URL: http://msvc-data:8003
+  MSVC_AUTH_URL: http://msvc-auth:8004
+  JWT_SECRET: oN9Jd83J1uVqV7+H1ydTjK9tqw2+ZK4QO+9OG7yF7qXfQb1h8bbv2X4+N9Mq+W==
+
+configMap:
+  name: msvc-gateway-config
+

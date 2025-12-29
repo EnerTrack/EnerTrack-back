@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.name }}
+  labels:
+    app: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+data:
+  application.properties: |
+    spring.application.name=msvc-gateway
+    server.port=8090
+    
+    #Habilitar actuator
+    management.endpoint.health.probes.enabled=true
+    management.endpoints.web.exposure.include=health,info
+    management.endpoint.health.show-details=always
+
+  application.yaml: |
+    spring:
+      cloud:
+        gateway:
+          routes:
+            - id: msvc-users
+              uri: {{ .Values.env.MSVC_USERS_URL }}
+              predicates:
+                - Path=/api/users/**
+              filters:
+                - StripPrefix=2
+
+            - id: msvc-energy
+              uri: {{ .Values.env.MSVC_ENERGY_URL }}
+              predicates:
+                - Path=/api/energy/**
+              filters:
+                - StripPrefix=2
+
+            - id: msvc-data
+              uri: {{ .Values.env.MSVC_DATA_URL }}
+              predicates:
+                - Path=/api/data/**
+              filters:
+                - StripPrefix=2
+
+            - id: msvc-auth
+              uri: {{ .Values.env.MSVC_AUTH_URL }}
+              predicates:
+                - Path=/api/auth/**
+              filters:
+                - StripPrefix=2
+
+    jwt:
+      secret: {{ .Values.env.JWT_SECRET }}
+

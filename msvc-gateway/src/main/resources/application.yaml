@@ -1,21 +1,34 @@
-
-# Configuración de rutas en el gateway
 spring:
   cloud:
     gateway:
-      server:
-        webmvc:
-          routes:
-            - id: msvc-users
-              uri: http://localhost:8001
-              predicates:
-                - Path=/api/users/**
-              filters:
-                - StripPrefix=2
+      routes:
+        - id: msvc-users
+          uri: http://msvc-users:8001
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=2
 
-            - id: msvc-energy
-              uri: http://localhost:8002
-              predicates:
-                - Path=/api/energy/**
-              filters:
-                - StripPrefix=2
+        - id: msvc-energy
+          uri: http://msvc-energy:8002
+          predicates:
+            - Path=/api/energy/**
+          filters:
+            - StripPrefix=2
+
+        - id: msvc-data
+          uri: http://msvc-data:8003
+          predicates:
+            - Path=/api/data/**
+          filters:
+            - StripPrefix=2
+
+        - id: msvc-auth
+          uri: http://msvc-auth:8004
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
+
+jwt:
+  secret: oN9Jd83J1uVqV7+H1ydTjK9tqw2+ZK4QO+9OG7yF7qXfQb1h8bbv2X4+N9Mq+W==

@@ -1,0 +1,148 @@
+version: "3.9"
+
+services:
+
+  ###### MySQL ######
+  mysql9:
+    container_name: mysql9
+    image: mysql:9
+
+    ports:
+      - "3307:3306"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: Rig0bert0.
+      MYSQL_DATABASE: msvc_users_db
+
+    volumes:
+      - data_mysql:/var/lib/mysql
+
+    restart: always
+
+    networks:
+      - enertrack-network
+
+  ###### PostgreSQL ######
+  postgres14:
+    container_name: postgres14
+    image: postgres:14-alpine
+
+    ports:
+      - "4000:5432"
+
+    environment:
+      POSTGRES_PASSWORD: Rig0bert0.
+      POSTGRES_DB: msvc_energy_db
+
+    volumes:
+      - data_postgres:/var/lib/postgresql/data
+
+    restart: always
+
+    networks:
+      - enertrack-network
+
+  ###### msvc-users ######
+  msvc-users:
+    container_name: enertrack-msvc-users
+    build:
+      context: ./msvc-users
+      dockerfile: Dockerfile
+
+    ports:
+      - "8001:8001"
+
+    networks:
+      - enertrack-network
+
+    depends_on:
+      - mysql9
+
+    restart: always
+
+  ###### msvc-energy ######
+  msvc-energy:
+    container_name: enertrack-msvc-energy
+    build:
+      context: ./msvc-energy
+      dockerfile: Dockerfile
+
+    ports:
+      - "8002:8002"
+
+    networks:
+      - enertrack-network
+
+    depends_on:
+      - mysql9
+      - msvc-users
+
+    restart: always
+
+  ###### msvc-data ######
+  msvc-data:
+    container_name: enertrack-msvc-data
+    build:
+      context: ./msvc-data
+      dockerfile: Dockerfile
+
+    ports:
+      - "8003:8003"
+
+    networks:
+      - enertrack-network
+
+    depends_on:
+      - mysql9
+
+    restart: always
+
+    ###### msvc-auth ######
+  msvc-auth:
+    container_name: enertrack-msvc-auth
+    build:
+      context: ./msvc-auth
+      dockerfile: Dockerfile
+
+    ports:
+      - "8004:8004"
+
+    networks:
+      - enertrack-network
+
+    depends_on:
+      - msvc-users
+
+    restart: always
+
+
+  ###### msvc-gateway ######
+  msvc-gateway:
+    container_name: enertrack-msvc-gateway
+    build:
+      context: ./msvc-gateway
+      dockerfile: Dockerfile
+
+    ports:
+      - "8090:8090"
+
+    networks:
+      - enertrack-network
+
+    depends_on:
+      - msvc-users
+      - msvc-energy
+      - msvc-data
+
+    restart: always
+
+volumes:
+  data_postgres:
+    name : data_postgres
+  data_mysql:
+    name: data_mysql
+
+networks:
+  enertrack-network:
+    driver: bridge
+

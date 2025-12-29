@@ -1,6 +1,7 @@
 package dev.ener_track.com.msvc_users.infrastructure.services;
 
 import dev.ener_track.com.msvc_users.api.dto.request.PersonRequest;
+import dev.ener_track.com.msvc_users.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.msvc_users.api.dto.response.relationsResponse.PersonRelationResponse;
 import dev.ener_track.com.msvc_users.domain.entities.DocumentTypeEntity;
 import dev.ener_track.com.msvc_users.domain.entities.PersonEntity;
@@ -9,13 +10,15 @@ import dev.ener_track.com.msvc_users.domain.repositories.PersonRepository;
 import dev.ener_track.com.msvc_users.infrastructure.adstract_service.IPersonService;
 import dev.ener_track.com.msvc_users.infrastructure.mappers.PersonMapper;
 import dev.ener_track.com.msvc_users.utils.emuns.SortType;
-import dev.ener_track.com.msvc_users.utils.exeptions.ErrorMesasges;
+import dev.ener_track.com.msvc_users.utils.exeptions.ErrorMessages;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -42,20 +45,26 @@ public class PersonService implements IPersonService {
     }
 
     @Override
+    public ValidateExistence existsByDocument(String document) {
+       boolean exists = personRepository.findByDocument(document).isPresent();
+        return new ValidateExistence(exists);
+    }
+
+    @Override
     public PersonRelationResponse create(PersonRequest request) throws BadRequestException {
 
-        PersonEntity personExisting = personRepository.findByDocument(request.getDocument());
-        if (personExisting != null) {
-            throw new BadRequestException(ErrorMesasges.alreadyExists(request.getDocument()));
+        Optional<PersonEntity> personExisting = personRepository.findByDocument(request.getDocument());
+        if (personExisting.isPresent()) {
+            throw new BadRequestException(ErrorMessages.alreadyExists(request.getDocument()));
         }
 
-        DocumentTypeEntity documentType = documentTypeRepository.findByName(request.getDocumentType());
-        if (documentType == null) {
-            throw new BadRequestException(ErrorMesasges.IdNotFound("DocumentType"));
+        Optional<DocumentTypeEntity> documentType = documentTypeRepository.findByName(request.getDocumentType());
+        if (documentType.isEmpty()) {
+            throw new BadRequestException(ErrorMessages.IdNotFound("DocumentType"));
         }
 
         PersonEntity newPerson = personMapper.toEntity(request);
-        newPerson.setDocumentType(documentType);
+        newPerson.setDocumentType(documentType.get());
 
         PersonEntity savedPerson = personRepository.save(newPerson);
 
@@ -82,7 +91,7 @@ public class PersonService implements IPersonService {
     }
 
     private PersonEntity find(String id) throws BadRequestException {
-        return this.personRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMesasges.IdNotFound("person")));
+        return this.personRepository.findById(id).orElseThrow(() -> new BadRequestException(ErrorMessages.IdNotFound("person")));
     }
 
 }

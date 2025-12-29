@@ -1,0 +1,21 @@
+replicaCount: 2
+
+image:
+  repository: rignu/enertrack-msvc-energy
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8002
+
+containerPort: 8002
+
+env:
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql9:3306/msvc_energy_db
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_PASSWORD: Rig0bert0.
+
+configMap:
+  name: msvc-energy-config
+

@@ -14,6 +14,7 @@ enertrack-backend/
 ├── README.md               # Documentación del proyecto
 └── docker-compose.yaml     # Orquestación de microservicios con Docker
 ```
+<<<<<<< HEAD
 | Servicio          | Rol                         | Puerto Host | Base de datos                |
 | ----------------- | --------------------------- | ----------- | ---------------------------- |
 | 🐬 `mysql9`       | Base de datos para usuarios | `3307`      | `msvc_users_db`              |
@@ -23,6 +24,8 @@ enertrack-backend/
 | ⚡ `msvc-auth`   | Microservicio de autenticación    | `8003`  | Comunicación con `msvc_users_db`|
 | 🌐 `msvc-gateway` | API Gateway                 | `8090`      | Redirige tráfico a los otros |
 
+=======
+>>>>>>> b3ea6db4ed6218acfdce4c6a7841ae2a21c1bef0
 #⚙️ Tecnologías
 - Java 17
 - Spring Boot

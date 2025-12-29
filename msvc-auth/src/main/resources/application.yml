@@ -1,0 +1,7 @@
+jwt:
+  secret: oN9Jd83J1uVqV7+H1ydTjK9tqw2+ZK4QO+9OG7yF7qXfQb1h8bbv2X4+N9Mq+W==
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG

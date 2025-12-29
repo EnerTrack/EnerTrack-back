@@ -2,6 +2,7 @@ package dev.ener_track.com.demo.infracture.service;
 
 import dev.ener_track.com.demo.api.dto.request.EnergyTypeRequest;
 import dev.ener_track.com.demo.api.dto.response.basicResponse.EnergyTypeResponse;
+import dev.ener_track.com.demo.api.dto.response.basicResponse.ValidateExistence;
 import dev.ener_track.com.demo.domain.entities.EnergyTypeEntity;
 import dev.ener_track.com.demo.domain.respositories.EnergyTypeRepository;
 import dev.ener_track.com.demo.infracture.adstract_service.IEnergyTypeService;
@@ -53,4 +54,35 @@ public class EnergyTypeService implements IEnergyTypeService {
         return this.energyTypeMapper.toResponse(savedEntity);
     }
 
+    @Override
+    public EnergyTypeResponse update(String id, EnergyTypeRequest request) throws BadRequestException {
+
+        EnergyTypeEntity energyType = this.find(id);
+
+        this.energyTypeMapper.updateEnergyTypeEntity(request, energyType);
+        EnergyTypeEntity savedEntity = this.energyTypeRepository.save(energyType);
+
+        return this.energyTypeMapper.toResponse(savedEntity);
+    }
+
+    @Override
+    public EnergyTypeResponse findByName(String name) {
+
+        Optional<EnergyTypeEntity> existingEntity = this.energyTypeRepository.findByName(name);
+
+        return existingEntity.map(
+                entity -> this.energyTypeMapper.toResponse(entity)).orElse(null);
+
+    }
+
+    @Override
+    public ValidateExistence existsByName(String name) {
+        boolean exists = this.energyTypeRepository.findByName(name).isPresent();
+        return new ValidateExistence(exists);
+    }
+
+    private EnergyTypeEntity find(String id) throws BadRequestException {
+        return this.energyTypeRepository.findById(id).orElseThrow(
+                () -> new BadRequestException(ErrorMessages.IdNotFound("Energy Type")));
+    }
 }
