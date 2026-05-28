@@ -4,59 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1872157f-dca6-4772-8594-ae284e539237" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-auth/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-auth/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-auth/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-auth/templates/configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-auth/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-auth/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-auth/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-auth/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-auth/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-auth/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-data/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-data/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-data/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-data/templates/configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-data/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-data/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-data/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-data/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-data/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-data/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-energy/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-energy/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-energy/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-energy/templates/configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-energy/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-energy/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-energy/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-energy/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-energy/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-energy/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-gateway/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-gateway/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-gateway/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-gateway/templates/configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-gateway/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-gateway/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-gateway/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-gateway/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-gateway/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-gateway/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-users/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-users/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-users/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-users/templates/configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-users/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-users/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-users/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-users/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/msvc-users/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/msvc-users/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/mysql/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/mysql/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/mysql/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/mysql/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/mysql/templates/pvc.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/mysql/templates/pvc.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/mysql/templates/secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/mysql/templates/secret.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/mysql/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/mysql/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/mysql/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/mysql/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/postgresql/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/postgresql/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/postgresql/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/postgresql/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/postgresql/templates/pvc.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/postgresql/templates/pvc.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/postgresql/templates/secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/postgresql/templates/secret.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/postgresql/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/postgresql/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/postgresql/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/postgresql/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-auth/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-auth/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-auth/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-auth/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-auth/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-auth/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-data/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-data/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-energy/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-energy/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-gateway/src/main/java/dev/ener_track/com/msvc_gateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-gateway/src/main/java/dev/ener_track/com/msvc_gateway/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-gateway/src/main/java/dev/ener_track/com/msvc_gateway/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-gateway/src/main/java/dev/ener_track/com/msvc_gateway/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-gateway/src/main/java/dev/ener_track/com/msvc_gateway/helper/JwtHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-gateway/src/main/java/dev/ener_track/com/msvc_gateway/helper/JwtHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-gateway/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-users/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-users/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="1872157f-dca6-4772-8594-ae284e539237" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,6 +108,7 @@
       <workItem from="1769013748346" duration="288000" />
       <workItem from="1773296962739" duration="247000" />
       <workItem from="1773333041721" duration="5000" />
+      <workItem from="1775783850042" duration="27000" />
     </task>
     <servers />
   </component>

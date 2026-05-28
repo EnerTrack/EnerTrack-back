@@ -23,13 +23,10 @@ public class AuthService implements IAuthService {
 
     @Override
     public TokenResponse login(LoginRequest request) {
-        System.out.println("🟡 Entró a AuthService.login()");
         VerifyEmail verifyEmail = new VerifyEmail(request.getEmail());
         VerifyLogin verify = this.userFeing.validateLogin(verifyEmail).getBody();
-        System.out.println("🟢 Respuesta Feign: " + verify);
 
         this.validPassword(verify, request);
-        System.out.println("✅ Password correcto");
 
         return TokenResponse.builder()
                 .AccessToken(jwtHelper.generateToken(verify))
